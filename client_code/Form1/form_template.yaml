@@ -1,0 +1,121 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:standard-page.html', background: 'theme:Secondary'}
+components:
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: content_panel
+  layout_properties: {slot: default}
+  components:
+  - name: grid_panel_1
+    properties: {background: 'theme:On Primary Container', border: '#006874', foreground: 'theme:On
+        Secondary', role: null}
+    type: GridPanel
+    layout_properties: {grid_position: 'JWQFIX,HGSTKQ'}
+    components:
+    - name: image_2_copy
+      properties: {height: 50, source: _/theme/head.jpeg, display_mode: zoom_to_fill}
+      type: Image
+      layout_properties: {row: ZKHFCX, width_xs: 12, col_xs: 0}
+    - name: welcomeLbl
+      properties: {text: Best Vegetarian Food Spots Neat UT!, font_size: 22, align: center,
+        tooltip: welcome noobs, border: '#006874'}
+      type: Label
+      layout_properties: {row: IJWOTP, width_xs: 12, col_xs: 0}
+    - name: image_3
+      properties: {height: 54, source: _/theme/veg.avif}
+      type: Image
+      layout_properties: {row: EJWPGO, width_xs: 2, col_xs: 2}
+    - name: disappearBtn
+      properties: {text: Make the Map Disappear!, role: tonal-button}
+      type: Button
+      layout_properties: {row: EJWPGO, width_xs: 4, col_xs: 4}
+      event_bindings: {click: disappearBtn_click}
+    - name: image_2
+      properties: {height: 60, source: _/theme/veg.avif}
+      type: Image
+      layout_properties: {row: EJWPGO, width_xs: 2, col_xs: 8}
+    - name: map_1
+      properties: {height: 279}
+      type: GoogleMap
+      layout_properties: {row: EHFOUX, width_xs: 12, col_xs: 0}
+    - name: left_btn
+      properties: {text: '', icon: 'fa:arrow-circle-left'}
+      type: Button
+      layout_properties: {row: OEUOKW, width_xs: 1, col_xs: 1}
+      event_bindings: {click: left_btn_click}
+      data_bindings: []
+    - name: image_1
+      properties: {visible: false, height: 240}
+      type: Image
+      layout_properties: {row: OEUOKW, width_xs: 6, col_xs: 3}
+    - name: right_btn
+      properties: {text: '', icon: 'fa:arrow-circle-right'}
+      type: Button
+      layout_properties: {row: OEUOKW, width_xs: 1, col_xs: 9}
+      event_bindings: {click: right_btn_click}
+    - name: infoAbtPin
+      properties: {visible: false, align: center, bold: true, italic: true, underline: true}
+      type: Label
+      layout_properties: {row: YBLFGA, width_xs: 9, col_xs: 1}
+    - name: label_6
+      properties: {foreground: 'theme:On Secondary Container'}
+      type: Label
+      layout_properties: {row: YVGOPX, width_xs: 4, col_xs: 5}
+    - name: wallLbl
+      properties: {text: 'My Wall:', visible: true, font_size: 35}
+      type: Label
+      layout_properties: {row: VVNRRV, width_xs: 3, col_xs: 1}
+    - name: label_3
+      properties: {text: Sign My Wall!, visible: true, align: center, font_size: 35,
+        background: 'theme:On Secondary', foreground: 'theme:On Primary Container'}
+      type: Label
+      layout_properties: {row: VVNRRV, width_xs: 5, col_xs: 6}
+    - name: label_4
+      properties: {visible: true, text: 'Name:', align: right, bold: true}
+      type: Label
+      layout_properties: {row: NCCAHM, width_xs: 1, col_xs: 6}
+    - name: text_box_1
+      properties: {visible: true}
+      type: TextBox
+      layout_properties: {row: NCCAHM, width_xs: 3, col_xs: 8}
+      event_bindings: {pressed_enter: signBtn_click}
+    - name: signBtn
+      properties: {text: Sign!, visible: true, bold: true}
+      type: Button
+      layout_properties: {row: AXRCMF, width_xs: 2, col_xs: 6}
+      event_bindings: {click: signBtn_click}
+    - name: label_7
+      properties: {text: Don't Forget to add a Comment!}
+      type: Label
+      layout_properties: {row: AXRCMF, width_xs: 4, col_xs: 8}
+    - name: repeating_panel_1
+      properties: {item_template: Form1.ItemTemplate1}
+      type: RepeatingPanel
+      layout_properties: {row: NRWLGB, width_xs: 6, col_xs: 0}
+      data_bindings:
+      - {property: items, code: 'self.item['''']', writeback: false}
+      - {property: item_template, code: 'self.item['''']', writeback: false}
+      event_bindings: {show: repeating_panel_1_show}
+- type: FlowPanel
+  properties: {}
+  name: navbar_links
+  layout_properties: {slot: nav-right}
+- name: column_panel_1
+  properties: {}
+  type: ColumnPanel
+  layout_properties: {slot: left-nav}
+  components:
+  - name: label_1
+    properties: {text: Home}
+    type: Label
+    layout_properties: {grid_position: 'EVWHVS,NQUWXN'}
+  - name: label_2
+    properties: {text: About}
+    type: Label
+    layout_properties: {grid_position: 'YBXZTQ,NHZUVG'}
+  - name: label_5
+    properties: {text: Contact}
+    type: Label
+    layout_properties: {grid_position: 'DXIQEG,VCVNDY'}

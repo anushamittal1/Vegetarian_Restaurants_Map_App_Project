@@ -1,0 +1,44 @@
+correct_dependency_ids: {}
+dependencies: []
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {}
+package_name: Small_Map_App
+allow_embedding: false
+name: Clone of project (2)
+runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
+startup_form: Form1
+db_schema:
+  locations:
+    client: none
+    server: full
+    columns:
+    - name: Lat
+      admin_ui: {width: 200, order: 0}
+      type: number
+    - name: Lon
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: Name
+      admin_ui: {width: 200, order: 2}
+      type: string
+    title: Locations
+  images:
+    client: none
+    server: full
+    columns:
+    - name: Location
+      admin_ui: {width: 200, order: 0}
+      type: link_single
+      target: locations
+    - name: Image
+      admin_ui: {width: 200, order: 1}
+      type: media
+    title: Images
+  wall:
+    client: none
+    server: full
+    columns: []
+    title: Table 3
+renamed: true
