@@ -41,36 +41,35 @@ class Form1(Form1Template):
       self.map_1.add_component(self.markerList[ind])
       ind += 1
 
-    # wall stuff
-    # self.load_wall()
+    
 
   def marker_click(self, sender, **properties):
-    # Make image and description elements visible
+    # image and description elements visible
     self.location = sender.tag
     print("Location set:", self.location)  
     self.image_1.visible = True
     self.label_6.visible = True
 
-    # Retrieve images associated with the clicked location
+    
     self.pictures = app_tables.images.search(Location=sender.tag)
     self.location = sender.tag
 
-    # Reset click counter for cycling through images
+    
     self.count_click = 0
 
-    # Display the first image and its description
+    
     if self.pictures:
         self.update_image_and_description()
     else:
         self.image_1.source = 'path/to/default/image.png'  # A default image if no images are found
         self.label_6.text = 'No description available'
 
-    # Optionally, update the info about the pin
+    
     self.infoAbtPin.visible = True
     self.infoAbtPin.text = f"You have clicked the pin at {sender.tag['Lat']}, {sender.tag['Lon']}.\n"
     self.infoAbtPin.text += f"It is called {sender.tag['Name']}."
 
-    # Load comments related to this location
+    
     self.load_wall()
 
     
@@ -106,42 +105,26 @@ class Form1(Form1Template):
 
 
   def load_wall(self):
-    
     if self.location is None:
         print("Error: No location set.")
         return
 
     
-    wall = app_tables.wall.search(Location=self.location)
+    wall = app_tables.wall.search(tables.order_by("When", ascending=False), Location=self.location)
 
     
     wall_list = list(wall)
-    print(f"Comments fetched: {len(wall_list)}")  #  the number of comments retrieved
+    print(f"Comments fetched: {len(wall_list)}")  
+
     if len(wall_list) > 0:
-        print(f"Sample comment: {wall_list[0]}")  #  the first comment to inspect its structure
-
-    
-    if len(wall_list) == 0:
-        self.wallLbl.visible = False
-        self.repeating_panel_1.visible = False
+        latest_comment = wall_list[0]
+        print(f"Latest comment: {latest_comment['Comment']} by {latest_comment['Signer']} at {latest_comment['When']}")
+        self.latest_comment_label.text = f"{latest_comment['Signer']} commented: '{latest_comment['Comment']}' at {latest_comment['When'].strftime('%Y-%m-%d %H:%M')}"
+        self.latest_comment_label.visible = True
+    else:
         print("No comments available for this location.")
-    else:
-        self.wallLbl.visible = True
-        self.repeating_panel_1.visible = True
-        self.repeating_panel_1.items = wall_list  
-        print("Comments are now displayed on the panel.")
-
-
-
-    if not wall:
-        self.wallLbl.visible = False
-        self.repeating_panel_1.visible = False
-    else:
-        self.wallLbl.visible = True
-        self.repeating_panel_1.visible = True
-        self.repeating_panel_1.items = wall
-        print("Items set to repeating panel:", self.repeating_panel_1.items)
-
+        self.latest_comment_label.text = "No comments available."
+        self.latest_comment_label.visible = False
 
 
 
@@ -156,7 +139,7 @@ class Form1(Form1Template):
     self.label_6.text = self.pictures[self.count_click % len(self.pictures)]['Description']
 
   def update_image_and_description(self):
-        # Method to update the displayed image and description
+        
         picture = self.pictures[self.count_click]
         self.image_1.source = picture['Image']
         self.label_6.text = picture['Description']

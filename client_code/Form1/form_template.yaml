@@ -50,6 +50,7 @@ components:
       properties: {visible: false, height: 240}
       type: Image
       layout_properties: {row: OEUOKW, width_xs: 6, col_xs: 3}
+      data_bindings: []
     - name: right_btn
       properties: {text: '', icon: 'fa:arrow-circle-right'}
       type: Button
@@ -66,12 +67,17 @@ components:
     - name: wallLbl
       properties: {text: 'My Wall:', visible: true, font_size: 35}
       type: Label
-      layout_properties: {row: VVNRRV, width_xs: 3, col_xs: 1}
+      layout_properties: {row: VVNRRV, width_xs: 3, col_xs: 2}
     - name: label_3
       properties: {text: Sign My Wall!, visible: true, align: center, font_size: 35,
-        background: 'theme:On Secondary', foreground: 'theme:On Primary Container'}
+        background: 'theme:On Secondary', foreground: 'theme:On Primary Container',
+        underline: true}
       type: Label
       layout_properties: {row: VVNRRV, width_xs: 5, col_xs: 6}
+    - name: latest_comment_label
+      properties: {text: See Latest Comments Here!, align: center}
+      type: Label
+      layout_properties: {row: NCCAHM, width_xs: 3, col_xs: 2}
     - name: label_4
       properties: {visible: true, text: 'Name:', align: right, bold: true}
       type: Label
@@ -89,7 +95,7 @@ components:
     - name: label_7
       properties: {text: Don't Forget to add a Comment!}
       type: Label
-      layout_properties: {row: AXRCMF, width_xs: 4, col_xs: 8}
+      layout_properties: {row: AXRCMF, width_xs: 3, col_xs: 8}
     - name: repeating_panel_1
       properties: {item_template: Form1.ItemTemplate1}
       type: RepeatingPanel
